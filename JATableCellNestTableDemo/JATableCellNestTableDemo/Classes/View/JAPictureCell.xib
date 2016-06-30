@@ -30,7 +30,7 @@
             <connections>
                 <outlet property="picImageView" destination="y6o-ZA-9t5" id="DNp-TF-r4Y"/>
             </connections>
-            <point key="canvasLocation" x="471.5" y="384"/>
+            <point key="canvasLocation" x="345.5" y="340"/>
         </tableViewCell>
     </objects>
 </document>

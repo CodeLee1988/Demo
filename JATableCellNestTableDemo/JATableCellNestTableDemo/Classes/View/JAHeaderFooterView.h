@@ -12,6 +12,6 @@ static NSString *const JAHeaderFooterViewIdentifier = @"JAHeaderFooterView";
 
 @interface JAHeaderFooterView : UITableViewHeaderFooterView
 
-- (void)configureTitleDay:(NSString *)title subTitle:(NSString *)subTitle;
+- (void)configureTitleDay:(NSString *)title subTitle:(NSString *)subTitle isNeedHideTopLine:(BOOL)hideTopLine;
 
 @end

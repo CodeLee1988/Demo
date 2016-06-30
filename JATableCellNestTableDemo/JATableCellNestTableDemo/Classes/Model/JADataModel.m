@@ -31,6 +31,7 @@
     if (self = [super init]) {
         self.theme = dict[@"theme"];
         self.content = dict[@"content"];
+        self.type = dict[@"type"];
         self.journeyrange = dict[@"journeyrange"];
         self.picurls = dict[@"picurls"];
         NSMutableArray <picurls*> *tempArr = [NSMutableArray array];
@@ -78,6 +79,17 @@
     for (NSDictionary *dict in arr) {
         [arrM addObject:[self dataModelWithDict:dict]];
     }
+    
+    [arrM enumerateObjectsUsingBlock:^(JADataModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.hideTopLine = (idx == 0) ? YES : NO;
+        obj.lastSetion = (idx == arrM.count - 1) ? YES : NO;
+        
+        if (idx == arrM.count - 1) {
+            [obj.dayjourney enumerateObjectsUsingBlock:^(dayjourney * _Nonnull objs, NSUInteger idxs, BOOL * _Nonnull stop) {
+                objs.lastRow = (idxs == obj.dayjourney.count - 1) ? YES : NO;
+            }];
+        }
+    }];
     return arrM;
 }
 @end

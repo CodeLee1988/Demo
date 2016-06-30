@@ -51,7 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor brownColor];
+    self.view.backgroundColor = [UIColor colorWithRed:61.0f/255.0f green:61.0f/255.0f blue:61.0f/255.0f alpha:1.0f];
     [self.tableView registerNib:[UINib nibWithNibName:JANestCellIdentifier bundle:nil] forCellReuseIdentifier:JANestCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:JAHeaderFooterViewIdentifier bundle:nil] forHeaderFooterViewReuseIdentifier:JAHeaderFooterViewIdentifier];
     self.tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
@@ -88,10 +88,10 @@
 {
     JADataModel *sectionModel = self.dataArr[section];
     JAHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:JAHeaderFooterViewIdentifier];
-    [view configureTitleDay:sectionModel.outday subTitle:sectionModel.title];
+    [view configureTitleDay:sectionModel.outday subTitle:sectionModel.title isNeedHideTopLine:sectionModel.hideTopLine];
     
     UIView *colorView = [[UIView alloc] initWithFrame:view.bounds];
-    colorView.backgroundColor = [UIColor redColor];
+    colorView.backgroundColor = [UIColor colorWithRed:61.0f/255.0f green:61.0f/255.0f blue:61.0f/255.0f alpha:1.0f];
     view.backgroundView = colorView;
     
     return view;
@@ -100,14 +100,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     JADataModel *sectionModel = self.dataArr[section];
-    [self.headerView configureTitleDay:sectionModel.outday subTitle:sectionModel.title];
+    [self.headerView configureTitleDay:sectionModel.outday subTitle:sectionModel.title isNeedHideTopLine:sectionModel.hideTopLine];
     CGFloat height = [self.headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     return height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return CGFLOAT_MIN;
+    JADataModel *sectionModel = self.dataArr[section];
+    return sectionModel.lastSetion ? 20.0f : CGFLOAT_MIN;
 }
 
 @end

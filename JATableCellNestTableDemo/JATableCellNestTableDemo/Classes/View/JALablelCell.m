@@ -21,6 +21,8 @@
     
     self.lblTitle.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 99.0f;
     
+    self.lblTitle.textColor = [UIColor whiteColor];
+    self.lblTitle.font = [UIFont systemFontOfSize:14.0f];
 }
 
 - (void)setTitle:(NSString *)title
